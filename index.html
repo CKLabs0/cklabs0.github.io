@@ -1,60 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>CKLabs - Android Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKLabs - Indie Android App & Game Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            accent: '#6366f1'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; color: #333; background: #f4f4f9; }
-        h1 { color: #000; }
-        .app-list { margin-top: 30px; }
-        .app-item { display: inline-block; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-decoration: none; color: #333; transition: transform 0.2s; }
-        .app-item:hover { transform: scale(1.05); }
+        /* Glassmorphism visual styles */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4ade80 0%, #3b82f6 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(34, 197, 94, 0.3);
+        }
     </style>
 </head>
-<body>
-    <h1>Welcome to CKLabs</h1>
-    <p>An indie developer creating funny games and useful apps.</p>
-    
-    <div class="app-list">
-        <h2>Our Applications:</h2>
-        <h3>Flashlight</h3>
-        <a href="https://play.google.com/store/apps/details?id=com.ciho.flashled" class="app-item">
-        <strong>Google Play</strong>
-        <a>
-        <a href="https://cklabs0.github.io/Simple-Flashlight/privacy-policy.html" class="app-item">
-		<strong>View Privacy Policy</strong>
-        </a>
-        <h3>Smatched Soccer</h3>
-        <a href="https://play.google.com/store/apps/details?id=com.cklabs.soccer" class="app-item">
-        <strong>Google Play</strong>
-        <a>
-        <a href="https://cklabs0.github.io/Smatched-Soccer/PRIVACY_POLICY.html" class="app-item">
-		<strong>View Privacy Policy</strong>
-        </a>
-        <a>
-        <a href="https://cklabs0.github.io/Smatched-Soccer/TERMS_OF_USE.html" class="app-item">
-		<strong>View Terms of Use</strong>
-        </a>
-        <h3>Simple Screen Display Test</h3>
-        <a href="https://play.google.com/store/apps/details?id=com.cklabs.screentest" class="app-item">
-        <strong>Google Play</strong>
-        <a>
-        <a href="https://cklabs0.github.io/simple-screen-display-test/PRIVACY_POLICY.html" class="app-item">
-		<strong>View Privacy Policy</strong>
-        </a>
-        <h3>İlaçStok</h3>
-        <a href="https://play.google.com/store/apps/details?id=com.cklabs.ilacstok" class="app-item">
-        <strong>Google Play</strong>
-        <a>
-        <a href="https://cklabs0.github.io/ilacStok/privacy_policy.html" class="app-item">
-		<strong>View Privacy Policy</strong>
-        </a>
-        <a>
-        <a href="https://cklabs0.github.io/ilacStok/kvkk.html" class="app-item">
-		<strong>KVKK Aydınlatma Metni</strong>
-        </a>
-    </div>
-    
-    <p style="margin-top: 50px; font-size: 0.8em; color: #777;">&copy; 2026 CKLabs. All rights reserved.</p>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo / Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    CK
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-white">CK<span class="text-brand-500">Labs</span></span>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#hero" class="hover:text-brand-500 transition-colors py-1" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                <a href="#apps" class="hover:text-brand-500 transition-colors py-1" data-tr="Uygulamalar" data-en="Apps">Uygulamalar</a>
+                <a href="#games" class="hover:text-brand-500 transition-colors py-1" data-tr="Oyunlar" data-en="Games">Oyunlar</a>
+                <a href="#contact" class="hover:text-brand-500 transition-colors py-1" data-tr="İletişim" data-en="Contact">İletişim</a>
+            </nav>
+
+            <!-- Language Switcher & Mobile Menu Trigger -->
+            <div class="flex items-center gap-4">
+                <button id="lang-toggle" onclick="toggleLanguage()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 text-xs font-semibold text-slate-200 transition-all">
+                    <i class="fa-solid fa-globe text-brand-500"></i>
+                    <span id="lang-text">TR</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-brand-500 font-medium" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+            <a href="#apps" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-brand-500 font-medium" data-tr="Uygulamalar" data-en="Apps">Uygulamalar</a>
+            <a href="#games" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-brand-500 font-medium" data-tr="Oyunlar" data-en="Games">Oyunlar</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-brand-500 font-medium" data-tr="İletişim" data-en="Contact">İletişim</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow pt-20">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative min-h-[85vh] flex items-center justify-center py-20 px-4 overflow-hidden">
+            <!-- Background Glow FX -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10 space-y-8">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700/80 text-xs font-medium text-brand-500 mb-2 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                    <span data-tr="Bağımsız Android Geliştirici" data-en="Indie Android Developer">Bağımsız Android Geliştirici</span>
+                </div>
+
+                <!-- Hero Title -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
+                    <span data-tr="Eğlenceli Oyunlar &" data-en="Fun Games &">Eğlenceli Oyunlar &</span><br>
+                    <span class="gradient-text" data-tr="Kullanışlı Uygulamalar" data-en="Useful Applications">Kullanışlı Uygulamalar</span>
+                </h1>
+
+                <!-- Hero Subtitle -->
+                <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed" 
+                   data-tr="CKLabs olarak günlük hayatı kolaylaştıran pratik araçlar ve keyifli zaman geçirmenizi sağlayan mobil oyunlar üretiyoruz."
+                   data-en="At CKLabs, we build practical tools that simplify daily tasks and mobile games that entertain users worldwide.">
+                    CKLabs olarak günlük hayatı kolaylaştıran pratik araçlar ve keyifli zaman geçirmenizi sağlayan mobil oyunlar üretiyoruz.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#apps" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 text-white font-semibold shadow-lg shadow-brand-600/30 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-google-play"></i>
+                        <span data-tr="Uygulamaları Keşfet" data-en="Explore Apps">Uygulamaları Keşfet</span>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/80 text-slate-200 font-semibold hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- APPS SECTION -->
+        <section id="apps" class="py-20 px-4 max-w-6xl mx-auto">
+            <!-- Section Title -->
+            <div class="text-center mb-16 space-y-3">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" data-tr="Uygulamalarımız" data-en="Our Applications">Uygulamalarımız</h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto" data-tr="Günlük işlerinizi kolaylaştırmak için tasarlanmış minimalist ve hızlı mobil araçlar." data-en="Minimalist and fast mobile tools designed to make your daily tasks easier.">Günlük işlerinizi kolaylaştırmak için tasarlanmış minimalist ve hızlı mobil araçlar.</p>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full mt-2"></div>
+            </div>
+
+            <!-- Apps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- App Card 1: Flashlight -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-slate-600/80 transition-all hover:-translate-y-1 duration-300">
+                    <div>
+                        <!-- Icon & Tag Header -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-slate-950 text-3xl shadow-lg shadow-orange-500/20">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20" data-tr="Araçlar" data-en="Utilities">Araçlar</span>
+                        </div>
+
+                        <!-- Title & Description -->
+                        <h3 class="text-xl font-bold text-white mb-2" data-tr="Flashlight (El Feneri)" data-en="Simple Flashlight">Flashlight (El Feneri)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6"
+                           data-tr="Hızlı, minimalist ve cihazınızın kamerasındaki LED flaşı en yüksek parlaklıkta kullanan pratik el feneri uygulaması."
+                           data-en="Fast, minimalist and practical flashlight app that utilizes your device's LED flash with maximum brightness.">
+                            Hızlı, minimalist ve cihazınızın kamerasındaki LED flaşı en yüksek parlaklıkta kullanan pratik el feneri uygulaması.
+                        </p>
+                    </div>
+
+                    <!-- Links & Actions -->
+                    <div class="space-y-3 pt-4 border-t border-slate-800/80">
+                        <a href="https://play.google.com/store/apps/details?id=com.ciho.flashled" target="_blank" rel="noopener" 
+                           class="w-full py-2.5 px-4 rounded-xl bg-brand-600/20 hover:bg-brand-600/30 text-brand-400 border border-brand-500/30 font-medium text-sm flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+                        
+                        <div class="flex items-center justify-center gap-4 text-xs text-slate-400 pt-1">
+                            <a href="https://cklabs0.github.io/Simple-Flashlight/privacy-policy.html" target="_blank" class="hover:text-slate-200 underline flex items-center gap-1">
+                                <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                <span data-tr="Gizlilik Politikası" data-en="Privacy Policy">Gizlilik Politikası</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App Card 2: Pixel Test -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-slate-600/80 transition-all hover:-translate-y-1 duration-300">
+                    <div>
+                        <!-- Icon & Tag Header -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-cyan-500/20">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20" data-tr="Test / Araç" data-en="Display / Tool">Test / Araç</span>
+                        </div>
+
+                        <!-- Title & Description -->
+                        <h3 class="text-xl font-bold text-white mb-2" data-tr="Pixel Test (Ekran Testi)" data-en="Simple Screen Display Test">Pixel Test (Ekran Testi)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6"
+                           data-tr="Ekranınızdaki ölü pikselleri, renk bozulmalarını ve dokunmatik hassasiyetini kolayca analiz etmenizi sağlayan ekran test aracı."
+                           data-en="Display test utility to easily detect dead pixels, color accuracy, and touch screen functionality.">
+                            Ekranınızdaki ölü pikselleri, renk bozulmalarını ve dokunmatik hassasiyetini kolayca analiz etmenizi sağlayan ekran test aracı.
+                        </p>
+                    </div>
+
+                    <!-- Links & Actions -->
+                    <div class="space-y-3 pt-4 border-t border-slate-800/80">
+                        <a href="https://play.google.com/store/apps/details?id=com.cklabs.screentest" target="_blank" rel="noopener" 
+                           class="w-full py-2.5 px-4 rounded-xl bg-brand-600/20 hover:bg-brand-600/30 text-brand-400 border border-brand-500/30 font-medium text-sm flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+
+                        <div class="flex items-center justify-center gap-4 text-xs text-slate-400 pt-1">
+                            <a href="https://cklabs0.github.io/simple-screen-display-test/PRIVACY_POLICY.html" target="_blank" class="hover:text-slate-200 underline flex items-center gap-1">
+                                <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                <span data-tr="Gizlilik Politikası" data-en="Privacy Policy">Gizlilik Politikası</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App Card 3: İlaçStok -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-slate-600/80 transition-all hover:-translate-y-1 duration-300">
+                    <div>
+                        <!-- Icon & Tag Header -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-rose-500/20">
+                                <i class="fa-solid fa-pills"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20" data-tr="Sağlık" data-en="Health">Sağlık</span>
+                        </div>
+
+                        <!-- Title & Description -->
+                        <h3 class="text-xl font-bold text-white mb-2" data-tr="İlaçStok" data-en="İlaçStok (Meds Tracking)">İlaçStok</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6"
+                           data-tr="Evdeki ilaçlarınızın son kullanma tarihlerini ve stok miktarlarını düzenli olarak takip etmenizi sağlayan akıllı sağlık yardımcısı."
+                           data-en="Smart healthcare assistant that allows you to manage expiration dates and stock levels of your medications at home.">
+                            Evdeki ilaçlarınızın son kullanma tarihlerini ve stok miktarlarını düzenli olarak takip etmenizi sağlayan akıllı sağlık yardımcısı.
+                        </p>
+                    </div>
+
+                    <!-- Links & Actions -->
+                    <div class="space-y-3 pt-4 border-t border-slate-800/80">
+                        <a href="https://play.google.com/store/apps/details?id=com.cklabs.ilacstok" target="_blank" rel="noopener" 
+                           class="w-full py-2.5 px-4 rounded-xl bg-brand-600/20 hover:bg-brand-600/30 text-brand-400 border border-brand-500/30 font-medium text-sm flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+
+                        <div class="flex items-center justify-center gap-3 text-xs text-slate-400 pt-1 flex-wrap">
+                            <a href="https://cklabs0.github.io/ilacStok/privacy_policy.html" target="_blank" class="hover:text-slate-200 underline flex items-center gap-1">
+                                <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                <span data-tr="Gizlilik" data-en="Privacy">Gizlilik</span>
+                            </a>
+                            <span>•</span>
+                            <a href="https://cklabs0.github.io/ilacStok/kvkk.html" target="_blank" class="hover:text-slate-200 underline flex items-center gap-1">
+                                <i class="fa-solid fa-file-contract text-[10px]"></i>
+                                <span>KVKK</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- GAMES SECTION -->
+        <section id="games" class="py-20 px-4 max-w-6xl mx-auto">
+            <!-- Section Title -->
+            <div class="text-center mb-16 space-y-3">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" data-tr="Oyunlarımız" data-en="Our Games">Oyunlarımız</h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto" data-tr="Eğlence ve rekabet dolu mobil oyun deneyimleri." data-en="Fun and competitive mobile gaming experiences.">Eğlence ve rekabet dolu mobil oyun deneyimleri.</p>
+                <div class="w-16 h-1 bg-indigo-500 mx-auto rounded-full mt-2"></div>
+            </div>
+
+            <!-- Games Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+
+                <!-- Game Card 1: Smatched Soccer -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-slate-600/80 transition-all hover:-translate-y-1 duration-300">
+                    <div>
+                        <!-- Icon & Tag Header -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-teal-500/20">
+                                <i class="fa-solid fa-futbol"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" data-tr="Spor / Arcade" data-en="Sports / Arcade">Spor / Arcade</span>
+                        </div>
+
+                        <!-- Title & Description -->
+                        <h3 class="text-xl font-bold text-white mb-2" data-tr="Smatched Soccer" data-en="Smatched Soccer">Smatched Soccer</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6"
+                           data-tr="Futbol heyecanını eğlenceli ve dinamik mekaniklerle sunan, hızlı tempolu arcade futbol oyunu."
+                           data-en="A fast-paced arcade soccer game delivering football excitement with fun and dynamic gameplay mechanics.">
+                            Futbol heyecanını eğlenceli ve dinamik mekaniklerle sunan, hızlı tempolu arcade futbol oyunu.
+                        </p>
+                    </div>
+
+                    <!-- Links & Actions -->
+                    <div class="space-y-3 pt-4 border-t border-slate-800/80">
+                        <a href="https://play.google.com/store/apps/details?id=com.cklabs.soccer" target="_blank" rel="noopener" 
+                           class="w-full py-2.5 px-4 rounded-xl bg-brand-600/20 hover:bg-brand-600/30 text-brand-400 border border-brand-500/30 font-medium text-sm flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+
+                        <div class="flex items-center justify-center gap-3 text-xs text-slate-400 pt-1 flex-wrap">
+                            <a href="https://cklabs0.github.io/Smatched-Soccer/PRIVACY_POLICY.html" target="_blank" class="hover:text-slate-200 underline flex items-center gap-1">
+                                <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                <span data-tr="Gizlilik" data-en="Privacy">Gizlilik</span>
+                            </a>
+                            <span>•</span>
+                            <a href="https://cklabs0.github.io/Smatched-Soccer/TERMS_OF_USE.html" target="_blank" class="hover:text-slate-200 underline flex items-center gap-1">
+                                <i class="fa-solid fa-file-lines text-[10px]"></i>
+                                <span data-tr="Kullanım Şartları" data-en="Terms of Use">Kullanım Şartları</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 px-4 max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="space-y-6 relative z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700/80 mx-auto flex items-center justify-center text-brand-500 text-2xl shadow-inner">
+                        <i class="fa-regular fa-paper-plane"></i>
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-white tracking-tight" data-tr="İletişime Geçin" data-en="Get In Touch">İletişime Geçin</h2>
+                    <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto" 
+                       data-tr="Proje önerileri, destek veya geri bildirimleriniz için bize her zaman e-posta gönderebilir veya GitHub sayfamızı inceleyebilirsiniz."
+                       data-en="Have a question, feedback, or business proposal? Feel free to send us an email or visit our GitHub profile.">
+                        Proje önerileri, destek veya geri bildirimleriniz için bize her zaman e-posta gönderebilir veya GitHub sayfamızı inceleyebilirsiniz.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+                        <a href="mailto:cklabs0@gmail.com" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/80 text-slate-200 font-medium text-sm flex items-center gap-2 transition-all">
+                            <i class="fa-regular fa-envelope text-brand-500"></i>
+                            <span>E-Posta Gönder</span>
+                        </a>
+                        <a href="https://github.com/cklabs0" target="_blank" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/80 text-slate-200 font-medium text-sm flex items-center gap-2 transition-all">
+                            <i class="fa-brands fa-github text-white"></i>
+                            <span>GitHub Profil</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 px-4 text-center text-xs text-slate-500 space-y-2">
+        <p>&copy; 2026 CKLabs. Tüm hakları saklıdır. / All rights reserved.</p>
+        <p data-tr="Android, Google LLC kuruluşunun tescilli markasıdır." data-en="Android is a trademark of Google LLC.">Android, Google LLC kuruluşunun tescilli markasıdır.</p>
+    </footer>
+
+    <!-- INTERACTION & LANGUAGE SCRIPT -->
+    <script>
+        // Current active language: 'tr' or 'en'
+        let currentLang = 'tr';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            document.getElementById('lang-text').innerText = currentLang.toUpperCase();
+            
+            // Translate all elements with data-tr and data-en attributes
+            const elements = document.querySelectorAll('[data-tr][data-en]');
+            elements.forEach(el => {
+                if (currentLang === 'en') {
+                    el.innerText = el.getAttribute('data-en');
+                } else {
+                    el.innerText = el.getAttribute('data-tr');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
